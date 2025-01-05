@@ -1,21 +1,20 @@
 class Animal:
-
-    alive = []
+    alive = []  # Revert to a class attribute.
 
     def __init__(self, name: str, health: int = 100) -> None:
+        """Initialize an Animal instance."""
         self.name = name
         self.health = health
         self.hidden = False
         Animal.alive.append(self)
 
     def __repr__(self) -> str:
-        bcw = self.name
-        acw = f"{{Name: {bcw}, Health: {self.health}, Hidden: {self.hidden}}}"
-        return acw
+        acw = self.hidden
+        return f"{{Name: {self.name}, Health: {self.health}, Hidden: {acw}}}"
 
     @staticmethod
-    def print_alive() -> str:
-        return str(Animal.alive)
+    def __str__() -> str:
+        return "[" + ", ".join(repr(animal) for animal in Animal.alive) + "]"
 
 
 class Herbivore(Animal):
